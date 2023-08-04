@@ -14,9 +14,52 @@ Collab-Sketch a real-time collaborative whiteboard application using Vue.js, Nod
 
 - Node.js and npm: Make sure you have Node.js and npm (Node Package Manager) installed on your machine.
 
+## Getting Started
+
+Follow these steps to set up and run both the frontend and backend of the Collab-Sketch application.
+
+### Frontend
+1. Navigate to the frontend directory:
+
+   ```bash
+   cd collab-sketch-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the frontend development server:
+   ```bash
+   npm run serve
+   ```
+- Open your web browser and go to http://localhost:8080 to access the Collab-Sketch frontend.
+
+### Backend
+1. Navigate to the backend directory:
+
+   ```bash
+   cd collab-sketch-backend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the backend server:
+
+   ```bash
+   node server.js
+   ```
+
+- The backend server will now be running and listening for WebSocket connections.
+
+
+
 ## Usage
 
-1. Open your web browser and navigate to the provided Vue.js development server URL (usually `http://localhost:8080`).
+1. Open your web browser and navigate to the provided Vue.js development server URL (`http://localhost:8080`).
 2. Collaborate with other users by drawing, adding text, and inserting images in real time on the whiteboard canvas.
 3. Changes made by one user will be instantly reflected on the canvas of other connected users.
 
