@@ -1,16 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<nav>
+<router-link to="/"> Home </router-link> |
+<router-link to="/login"> Login </router-link> |
+<button @click="handleLogOut" v-if="isLoggedIn"> Log Out </button>
+<router-link to="/signup"> Signup </router-link> |
+</nav>
+  <router-view />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { onMounted, ref } from "vue"
+import { useRouter } from "vue-router";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+const router = useRouter();
+const isLoggedIn = ref(false);
+
+let auth;
+onMounted(() => {
+auth = getAuth():
+onAuthStateChanged(auth, (user) => {
+if (user) {
+isLoggedIn.value = true;
+} else {
+isLoggedIn.value = false;
+}
+});
+});
+
+const handleLogOut = () => {
+signOut(auth).then(() => {
+router.push("/");
+});
 }
 </script>
 
