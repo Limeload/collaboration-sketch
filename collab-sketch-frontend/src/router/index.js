@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { getAuth } from "firebase/auth"; // Import the specific Firebase components you need
 
 const router = createRouter({
   history: createWebHistory(),
@@ -25,7 +24,8 @@ const router = createRouter({
 
 // Add a navigation guard to check authentication status
 router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser;
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
 
   // Check if the route requires authentication
   if (to.matched.some((record) => record.meta.requiresAuth)) {
@@ -52,4 +52,3 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
- 
