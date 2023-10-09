@@ -1,4 +1,4 @@
-# Collab-Sketch
+ # Collab-Sketch
 
 Collab-Sketch a real-time collaborative whiteboard application using Vue.js, Node.js, Redis, and WebSockets. Users can draw, add text, and insert images on a shared canvas in real-time. This project demonstrates proficiency in real-time collaboration and WebSockets.
 

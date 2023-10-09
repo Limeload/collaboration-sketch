@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../components/HelloWorld.vue"),
+      component: () => import("../components/WhiteBoard.vue"),
       meta: { requiresAuth: true }, // This route requires authentication
     },
     {

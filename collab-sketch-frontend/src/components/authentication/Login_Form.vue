@@ -1,11 +1,42 @@
 <template>
-  <div>
-    <h1> Sign In to an Account</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p><button @click="login">Submit</button></p>
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="login-container">
+          <div class="login-form">
+            <h2>Login</h2>
+            <form @submit.prevent="login">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  v-model="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  v-model="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-outline-primary btn-block" @click="login">
+                Sign In
+              </button>
+            </form>
+            <button @click="signInWithGoogle" class="btn btn-outline-primary btn-block">
+              Sign In With Google
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,3 +86,29 @@ const signInWithGoogle = () => {
     });
 }
 </script>
+
+
+<style scoped>
+/* Add your custom styles here */
+.container {
+  margin-top: 50px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-form {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+}
+</style>
