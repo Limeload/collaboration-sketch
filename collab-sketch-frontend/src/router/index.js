@@ -6,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../components/WhiteBoard.vue"),
-      meta: { requiresAuth: true }, // This route requires authentication
+      component: () => import("../components/home/WhiteBoard.vue"),
+      meta: { requiresAuth: false }, // This route requires authentication
     },
     {
       path: "/login",
