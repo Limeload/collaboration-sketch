@@ -4,18 +4,22 @@
       <div class="col-md-6 offset-md-3">
         <div class="login-container">
           <div class="login-form">
-            <h2>Login</h2>
+            <img src="/images/horizon_logo.png" alt="logo" class="img_icon" />
+            <h5>Sign in</h5>
+            <br />
             <form @submit.prevent="login">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Username or Email</label>
                 <input
                   type="email"
                   id="email"
                   v-model="email"
                   class="form-control"
+                  placeholder="Username"
                   required
                 />
               </div>
+              <br />
               <div class="form-group">
                 <label for="password">Password</label>
                 <input
@@ -23,16 +27,27 @@
                   id="password"
                   v-model="password"
                   class="form-control"
+                  placeholder="Password"
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-outline-primary btn-block" @click="login">
+              <br />
+              <button type="submit" class="btn btn-login" @click="login">
                 Sign In
               </button>
-            </form>
-            <button @click="signInWithGoogle" class="btn btn-outline-primary btn-block">
+              <br />
+              or
+              <br />
+               <button @click="signInWithGoogle" class="btn-google">
+                <img src="/images/google.png" alt="logo" class="google-icon" />
               Sign In With Google
             </button>
+              <div class="text-align">
+                <h8 class="text-color"> Don't have an account? </h8>
+                <h8><router-link to="/signup" reload>Create account</router-link></h8>
+                <p><router-link to="/" class="skip-p"> Skip for now</router-link> </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -49,7 +64,7 @@ const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
 const router = useRouter();
-const auth = getAuth(); // Get the auth instance
+const auth = getAuth();
 
 const login = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
@@ -84,19 +99,13 @@ const signInWithGoogle = () => {
       console.log(error.code);
       alert(error.message);
     });
-}
+};
 </script>
 
-
 <style scoped>
-/* Add your custom styles here */
 .container {
-  margin-top: 50px;
-}
-
-.login-container {
-  display: flex;
-  justify-content: space-between;
+  margin-top: 10px;
+  padding: 2rem 2rem;
 }
 
 .login-form {
@@ -108,7 +117,62 @@ const signInWithGoogle = () => {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-group {
+ text-align: left;
+}
+
+.img_icon {
+  width: 12rem;
+  padding-bottom: 2rem;
+}
+
+.google-icon {
+  width: 1.5rem;
+  margin-right: 1rem;
+}
+
 .login-form h2 {
   margin-bottom: 20px;
 }
+
+.form-control {
+  border-radius: 2rem;
+  border-color: gray;
+
+}
+
+.text-align {
+  text-align: center;
+}
+
+.btn-login  {
+  border-radius: 2rem;
+  background-color: #FE9F4F;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.btn-google {
+  border-radius: 2rem;
+  color: #3e3c3c;
+  background-color: rgb(231, 231, 231);
+  border-color: transparent;
+  padding: 0.5rem;
+}
+
+.text-align {
+  padding: 2rem 2rem;
+}
+
+.text-color {
+  color: #FE9F4F;
+}
+
+.skip-p {
+  color: #a9a7a7;
+  text-decoration: none;
+  font-size: small;
+}
+
 </style>
