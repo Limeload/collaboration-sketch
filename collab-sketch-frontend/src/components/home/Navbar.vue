@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar">
     <div class="navbar-left">
-      <img src="/images/logo.png" alt="Logo" />
+     <router-link to="/"><img src="/images/logo.png" alt="Logo" /></router-link>
+     <h8> What's up today, <b>{{ currentUser }}</b>?</h8>
     </div>
     <div class="navbar-right">
       <ul>
@@ -20,14 +21,54 @@
           <img src="/images/settings.png" alt="Settings" class="icon_img" />
           </router-link>
         </li>
+        <li>
+          <span v-if="isLoggedIn">
+        <button @click="handleLogOut" class="btn-logout"> Log Out </button>
+      </span>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
-<script>
+<script >
 export default {
   name: 'NavBar',
+};
+</script>
+
+<script setup>
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+const router = useRouter();
+const isLoggedIn = ref(false);
+const currentUser = ref(null);
+
+let auth;
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+      currentUser.value = user.displayName;
+    } else {
+      isLoggedIn.value = false;
+      currentUser.value = null;
+    }
+  });
+});
+
+const handleLogOut = () => {
+  signOut(auth)
+    .then(() => {
+      router.push("/login");
+    })
+    .catch((error) => {
+      console.error("Error signing out:", error);
+      // Handle the error (e.g., show an error message)
+    });
 };
 </script>
 
@@ -87,5 +128,13 @@ export default {
 
 .navbar-right a.active {
   color: #fff;
+}
+
+.btn-logout {
+border-radius: 2rem;
+background-color: #eee;
+border-color: transparent;
+font-size: 0.75rem;
+
 }
 </style>
