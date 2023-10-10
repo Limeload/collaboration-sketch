@@ -1,8 +1,10 @@
 <template>
   <nav class="navbar">
     <div class="navbar-left">
-     <router-link to="/"><img src="/images/logo.png" alt="Logo" /></router-link>
-     <h8> What's up today, <b>{{ currentUser }}</b>?</h8>
+     <router-link to="/login"><img src="/images/logo.png" alt="Logo" /></router-link>
+     <span v-if="isLoggedIn">
+      <h8> What's up today, <b>{{ currentUser }}</b>?</h8>
+     </span>
     </div>
     <div class="navbar-right">
       <ul>
